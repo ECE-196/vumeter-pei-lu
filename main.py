@@ -13,7 +13,23 @@ led_pins = [
     board.IO21,
     board.IO26, # type: ignore
     board.IO47,
+    board.IO33,
+    board.IO34,
+    board.IO48,
+    board.IO35,
+    board.IO36,
+    board.IO37,
+    board.IO38,
+    board.IO39,
     # do the rest...
+]
+
+
+trigger_value = [
+    0,
+    1000,
+    2000,
+
 ]
 
 leds = [DigitalInOut(pin) for pin in led_pins]
@@ -27,10 +43,14 @@ while True:
 
     print(volume)
 
-    leds[0].value = not leds[0].value
-    leds[1].value = not leds[0].value
+    for idx in range(11):
+        if volume > trigger_value[idx]: leds[idx].value =  True
+        else : leds[idx].value = False
 
-    sleep(1)
+    # leds[0].value = not leds[0].value
+    # leds[1].value = not leds[0].value
+
+    #sleep(0.1)
 
     # instead of blinking,
     # how can you make the LEDs
